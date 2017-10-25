@@ -79,24 +79,35 @@ export default class SignUp extends Component {
                     value={this.state.username}
                     onChangeText={text => this.setState({ username: text })}
                     underlineColorAndroid='transparent'
+                    returnKeyType="next"
+                    onSubmitEditing={()=> this.emailInput.focus()}
                 />
                 <TextInput 
                     style={inputStyle} 
                     placeholder="Enter your email" 
                     value={this.state.email}
                     onChangeText={text => this.setState({ email: text })}
+                    returnKeyType="go"
+                    ref={(input) => this.emailInput=input}
+                    onSubmitEditing={()=> this.phoneInput.focus()}
                 />
                 <TextInput 
                     style={inputStyle} 
                     placeholder="Enter your phone number" 
                     value={this.state.phone}
                     onChangeText={text => this.setState({ phone: text })}
+                    returnKeyType="go"
+                    ref={(input) => this.phoneInput=input}
+                    onSubmitEditing={()=> this.addressInput.focus()}
                 />
                 <TextInput 
                     style={inputStyle} 
                     placeholder="Enter your address" 
                     value={this.state.addr}
                     onChangeText={text => this.setState({ addr: text })}
+                    returnKeyType="go"
+                    ref={(input) => this.addressInput=input}
+                    onSubmitEditing={()=> this.passwordInput.focus()}
                 />
                 <TextInput 
                     style={inputStyle} 
@@ -104,6 +115,9 @@ export default class SignUp extends Component {
                     value={this.state.password}
                     secureTextEntry
                     onChangeText={text => this.setState({ password: text })}
+                    returnKeyType="go"
+                    ref={(input) => this.passwordInput=input}
+                    onSubmitEditing={()=> this.repasswordInput.focus()}
                 />
                 <TextInput 
                     style={inputStyle} 
@@ -111,6 +125,8 @@ export default class SignUp extends Component {
                     value={this.state.rePassword}
                     secureTextEntry
                     onChangeText={text => this.setState({ repassword: text })}
+                    returnKeyType="go"
+                    ref={(input) => this.repasswordInput=input}
                 />
                 <TouchableOpacity style={bigButton} onPress={this.registerUser.bind(this)}>
                     <Text style={buttonText}>SIGN UP NOW</Text>

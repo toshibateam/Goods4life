@@ -66,6 +66,9 @@ export default class SignIn extends Component {
                     value={user}
                     onChangeText={text => this.setState({ user: text })}
                     underlineColorAndroid='transparent'
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.passwordInput.focus()}
+
                 />
                 <TextInput
                     style={inputStyle}
@@ -73,6 +76,8 @@ export default class SignIn extends Component {
                     value={password}
                     onChangeText={text => this.setState({ password: text })}
                     secureTextEntry
+                    returnKeyType="go"
+                    ref={(input) => this.passwordInput = input}
                 />
                 <TouchableOpacity style={bigButton} onPress={this.onSignIn.bind(this)}>
                     <Text style={buttonText}>SIGN IN NOW</Text>
