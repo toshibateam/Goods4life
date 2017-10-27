@@ -1,5 +1,5 @@
 const register = () => (
-  new WebSocket('ws://192.168.1.155:8080/local-server/CreateAccount')
+  new WebSocket('ws://192.168.1.8:8080/local-server/CreateAccount')
   );
 // const register = (email, name, password) => (
 //   fetch('http://192.168.1.155:8080/api/register.php',

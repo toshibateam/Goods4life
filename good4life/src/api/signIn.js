@@ -1,5 +1,5 @@
 const signIn = () =>(
-    new WebSocket('ws://192.168.1.155:8080/local-server/SignIn')
+    new WebSocket('ws://192.168.1.8:8080/local-server/SignIn')
   );
 // const signIn = (email, password) => (
 //   fetch('http://192.168.1.155:8080/api/login.php',

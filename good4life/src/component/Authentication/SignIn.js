@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {LoginButton, AccessToken, LoginManager, ShareDialog} from 'react-native-fbsdk';
+
 import signIn from '../../api/signIn';
 import global from '../global';
 
@@ -10,8 +12,61 @@ export default class SignIn extends Component {
         super(props);
         this.state = {
             user: '',
-            password: ''
+            password: '',
+            shareLinkContent: shareLinkContent,
+            loggedFB: false,
         };
+
+        const shareLinkContent = {
+            contentType: 'link',
+            contentUrl: 'https://www.facebook.com/',
+          };
+      
+    }
+
+    onSignInFB(){
+        if(!this.state.loggedFB){
+          LoginManager.logInWithPublishPermissions(['publish_actions'])
+          .then((result)=>{
+            if(result.isCancelled){
+              alert('cancel login');
+            }
+              this.setState({loggedFB: true});
+              AccessToken.getCurrentAccessToken().then(
+                (data) => {
+                  alert(data.accessToken.toString())
+                }
+              )
+          })
+          .catch(error=> console.log(error));
+        }else{
+          this.setState({loggedFB: false});
+          LoginManager.logOut();
+        }
+        
+      }
+
+    // share link
+    shareLinkWithShareDialog() {
+        var tmp = this;
+        ShareDialog.canShow(this.state.shareLinkContent)
+        .then(function(canShow) {
+            if (canShow) {
+            return ShareDialog.show(tmp.state.shareLinkContent);
+            }
+        })
+        .then(
+            function(result) {
+            if (result.isCancelled) {
+                alert('Share cancelled');
+            } else {
+                alert('Share success');
+            }
+            },
+            function(error) {
+            alert('Share fail with error: ' + error);
+            },
+        );
     }
 
     onSignIn() {
@@ -19,7 +74,7 @@ export default class SignIn extends Component {
         const ws = signIn();
         ws.onopen = () => {
             // connection opened
-            ws.send(JSON.stringify({UserName: user, PassWord: password})); // send a message
+            ws.send(JSON.stringify({Mail: user, PassWord: password})); // send a message
           };
           
           ws.onmessage = (e) => {
@@ -79,6 +134,11 @@ export default class SignIn extends Component {
                     returnKeyType="go"
                     ref={(input) => this.passwordInput = input}
                 />
+
+                <TouchableOpacity style={bigButton} onPress={this.onSignInFB.bind(this)}>
+                    <Text style={buttonText}>{this.state.loggedFB ? "SIGN OUT FACEBOOK" : "SIGN IN FACEBOOK"}</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={bigButton} onPress={this.onSignIn.bind(this)}>
                     <Text style={buttonText}>SIGN IN NOW</Text>
                 </TouchableOpacity>
