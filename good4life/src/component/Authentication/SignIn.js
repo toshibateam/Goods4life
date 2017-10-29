@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import {LoginButton, AccessToken, LoginManager, ShareDialog} from 'react-native-fbsdk';
+import {LoginButton, AccessToken, LoginManager, ShareDialog, GraphRequest,
+    GraphRequestManager} from 'react-native-fbsdk';
 
 import signIn from '../../api/signIn';
 import global from '../global';
@@ -10,62 +11,83 @@ import global from '../global';
 export default class SignIn extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: '',
-            password: '',
-            shareLinkContent: shareLinkContent,
-            loggedFB: false,
-        };
 
         const shareLinkContent = {
             contentType: 'link',
             contentUrl: 'https://www.facebook.com/',
-          };
-      
+            contentDescription: 'Facebook sharing is easy!'
+        };
+
+        this.state = {
+            user: '',
+            password: '',
+            shareLinkContent: shareLinkContent,
+        };      
     }
 
     onSignInFB(){
-        if(!this.state.loggedFB){
           LoginManager.logInWithPublishPermissions(['publish_actions'])
           .then((result)=>{
             if(result.isCancelled){
-              alert('cancel login');
+                console.log("cancel login");
             }
-              this.setState({loggedFB: true});
               AccessToken.getCurrentAccessToken().then(
                 (data) => {
-                  alert(data.accessToken.toString())
+                    let accessToken = data.accessToken
+                    console.log(accessToken.toString())
+      
+                    const responseInfoCallback = (error, result) => {
+                      if (error) {
+                        console.log(error)
+                        alert('Error fetching data: ' + error.toString());
+                      } else {
+                        console.log(result)
+                        global.onSignIn(result.name);
+                        this.props.goBackToMain();
+                      }
+                    }
+      
+                    const infoRequest = new GraphRequest(
+                      '/me',
+                      {
+                        accessToken: accessToken,
+                        parameters: {
+                          fields: {
+                            string: 'email,name,first_name,middle_name,last_name'
+                          }
+                        }
+                      },
+                      responseInfoCallback
+                    );
+      
+                    // Start the graph request.
+                    new GraphRequestManager().addRequest(infoRequest).start()      
+
                 }
               )
           })
           .catch(error=> console.log(error));
-        }else{
-          this.setState({loggedFB: false});
-          LoginManager.logOut();
-        }
-        
       }
 
     // share link
     shareLinkWithShareDialog() {
         var tmp = this;
         ShareDialog.canShow(this.state.shareLinkContent)
-        .then(function(canShow) {
+        .then((canShow) => {
             if (canShow) {
             return ShareDialog.show(tmp.state.shareLinkContent);
             }
         })
-        .then(
-            function(result) {
-            if (result.isCancelled) {
-                alert('Share cancelled');
-            } else {
-                alert('Share success');
-            }
-            },
-            function(error) {
-            alert('Share fail with error: ' + error);
-            },
+        .then(result => {
+                if (result.isCancelled) {
+                    alert('Share cancelled');
+                  } else {
+                    alert('Share success with postId: ' + result.postId);
+                  }
+                },
+                function(error) {
+                alert('Share fail with error: ' + error);
+                },
         );
     }
 
@@ -136,7 +158,11 @@ export default class SignIn extends Component {
                 />
 
                 <TouchableOpacity style={bigButton} onPress={this.onSignInFB.bind(this)}>
-                    <Text style={buttonText}>{this.state.loggedFB ? "SIGN OUT FACEBOOK" : "SIGN IN FACEBOOK"}</Text>
+                    <Text style={buttonText}>SIGN IN FACEBOOK</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={bigButton} onPress={this.shareLinkWithShareDialog.bind(this)}>
+                    <Text style={buttonText}>SHARE LINK WITH FACEBOOK</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={bigButton} onPress={this.onSignIn.bind(this)}>

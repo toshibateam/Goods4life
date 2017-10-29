@@ -12,7 +12,9 @@
 		"react-native-deprecated-custom-components": "^0.1.1",
 		"react-native-drawer": "^2.5.0",
 		"react-native-fbsdk": "^0.6.3",
+		"react-native-image-picker": "^0.26.7",
 		"react-native-maps": "^0.17.1",
+		"react-native-scrollable-tab-view": "^0.8.0",
 		"react-native-swiper": "^1.5.13",
 		"react-native-tab-navigator": "^0.3.4",
 		"react-navigation": "^1.0.0-beta.15"

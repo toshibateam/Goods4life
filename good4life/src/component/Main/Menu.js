@@ -6,6 +6,7 @@ import {
 
 import profileIcon from '../../media/temp/profile.png';
 import global from '../global';
+import {LoginManager} from 'react-native-fbsdk';
 
 class Menu extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Menu extends Component {
 
     onSignOut() {
         this.setState({user : null});
+        LoginManager.logOut();
     }
 
     gotoAuthentication() {
