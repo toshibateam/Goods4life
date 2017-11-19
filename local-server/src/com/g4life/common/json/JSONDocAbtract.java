@@ -26,41 +26,16 @@ import com.google.gson.annotations.SerializedName;
  */
 public abstract class JSONDocAbtract {
 	
-	/** The communication id. */
-	@SerializedName("communicationID")
-	@Expose
-	protected String communicationID;
-	
-	/** The response time. */
-	@SerializedName("responseTime")
-	@Expose (deserialize = false)
-	protected String responseTime;
-	
 	/** The response time. */
 	@SerializedName("code")
 	@Expose (deserialize = false)
 	protected String code = "200";
-	
-	/**
-	 * Instantiates a new JSON doc abtract.
-	 *
-	 * @param communicationID the communication id
-	 * @param responsTime the respons time
-	 */
-	public JSONDocAbtract(String communicationID, String responsTime) {
-		super();
-		this.communicationID = communicationID;
-		this.responseTime = responsTime;
-		
-	}
-
 	/**
 	 * Gets the JSON doc.
 	 *
 	 * @return the JSON doc
 	 */
-	public abstract String getJSONDoc();
-	
+	public abstract String getJSONDoc();	
 	/**
 	 * Sets the code.
 	 *

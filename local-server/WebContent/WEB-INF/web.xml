@@ -11,7 +11,7 @@
   </welcome-file-list>
   <listener>
     <listener-class>
-             com.g4life.servlet.http.ServerApplicationContext
+             com.g4life.service.websocket.ServerApplicationContext
         </listener-class>
   </listener>
 </web-app>

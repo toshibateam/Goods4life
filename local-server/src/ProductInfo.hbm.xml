@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2016 7:09:44 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.g4life.dto.ProductInfo" table="product_info">
+         <composite-id>
+			<key-property name="accountID" type="int">
+            <column name="id_account" />
+        	</key-property>	
+        	<key-property name="productNo" type="int">
+            <column name="product_no" />
+        	</key-property>
+        	<key-property name="itemNo" type="int">
+            <column name="item_no" />
+        	</key-property>					
+		</composite-id>
+        <property name="itemSubject" type="java.lang.String">
+            <column name="item_subject" />
+        </property>
+        <property name="unitPrice" type="java.lang.String">
+            <column name="unit_price" />
+        </property>
+        <property name="unit" type="java.lang.String">
+            <column name="unit" />
+        </property>
+        <property name="totalCount" type="int">
+            <column name="total_count" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="start_date" />
+        </property>
+        <property name="endDate" type="java.util.Date">
+            <column name="end_date" />
+        </property>
+        <property name="rating" type="int">
+            <column name="rating" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" />
+        </property>
+        <property name="discount" type="int">
+            <column name="discount" />
+        </property>
+        <property name="imageName" type="java.lang.String">
+            <column name="image_name" />
+        </property>
+        <property name="information" type="java.lang.String">
+            <column name="information" />
+        </property>        
+        <property name="comment" type="java.lang.String">
+            <column name="comment" />
+        </property>
+    </class>
+</hibernate-mapping>

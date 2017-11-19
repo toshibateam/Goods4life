@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/GOOD4LIFE</property>
+        <property name="hibernate.connection.username">good4life</property>
+        <property name="hibernate.connection.password">abc123</property>          
+        <property name="show_sql">false</property>
+        <property name="hibernate.enable_lazy_load_no_trans">false</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+		<mapping resource="ProductInfo.hbm.xml" />
+		<mapping resource="AccountInfo.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

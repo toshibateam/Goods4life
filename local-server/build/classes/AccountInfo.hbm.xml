@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2016 7:09:44 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.g4life.dto.AccountInfo" table="account_info">
+         <composite-id>
+			<key-property name="accountID" type="int">
+            <column name="id_account" />
+        	</key-property>				
+		</composite-id>
+        <property name="userName" type="java.lang.String">
+            <column name="username" />
+        </property>
+        <property name="passWord" type="java.lang.String">
+            <column name="password" />
+        </property>
+        <property name="phoneNumber" type="java.lang.String">
+            <column name="phonenumber" />
+        </property>
+        <property name="mail" type="java.lang.String">
+            <column name="mail" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" />
+        </property>
+        <property name="accountType" type="int">
+            <column name="account_type" />
+        </property>
+    </class>
+</hibernate-mapping>

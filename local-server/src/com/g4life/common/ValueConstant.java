@@ -27,10 +27,21 @@ public interface ValueConstant {
 	
 
 	public static final String DATA_JSON = "data";
-    
-	
+	public static final String IMAGE_PATH = "./data/image/";
 	/** The Constant DEFAULT_ENCODING. */
 	// Start V1.01
     public static final String DEFAULT_ENCODING = "UTF-8";
+    //Type acocunt
+    public static final int TYPE_ADMIN = 1;
+    public static final int TYPE_SELLER = 2;
+    public static final int TYPE_BUYER = 3;
+    //Type sign in
+    public static final int SIGN_IN_BY_FACEBOOK = 5;
+    public static final int SIGN_IN_BY_TOKEN = 6;
+    public static final int SING_IN_BY_MAIL = 7;
+    public static final int SING_IN_BY_PHONE = 8;
+    //Type function request
+    public static final String HOME_PRO_INFO = "GetHomeInfo";
+    
     
 }
