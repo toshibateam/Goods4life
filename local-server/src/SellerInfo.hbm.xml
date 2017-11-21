@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2016 7:09:44 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.g4life.dto.SellerInfo" table="account_info">
+         <composite-id>
+			<key-property name="accountID" type="int">
+            <column name="id_account" />
+        	</key-property>				
+		</composite-id>
+        <property name="rating" type="int">
+            <column name="rating" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="status" />
+        </property>
+        <property name="startDate" type="java.util.Date">
+            <column name="start_date" />
+        </property>
+        <property name="comment" type="java.lang.String">
+            <column name="comment" />
+        </property>
+        <property name="sellerType" type="int">
+            <column name="seller_type" />
+        </property>
+        <property name="accountType" type="int">
+            <column name="account_type" />
+        </property>
+    </class>
+</hibernate-mapping>

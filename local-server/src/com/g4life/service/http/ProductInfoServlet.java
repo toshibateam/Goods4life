@@ -66,6 +66,9 @@ public class ProductInfoServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String content  = req.getHeader("data");
+		System.out.println("content: "+ content);
+		req.getInputStream();
 		
 	}
 	/*

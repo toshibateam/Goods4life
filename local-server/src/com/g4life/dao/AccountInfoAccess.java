@@ -9,9 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.g4life.common.ValueConstant;
 import com.g4life.dto.AccountInfo;
-import com.g4life.dto.ProductInfo;
 import com.g4life.util.HibernateUtil;
 
 public class AccountInfoAccess {
@@ -20,7 +18,7 @@ public class AccountInfoAccess {
 			// Open session
 			Session session = HibernateUtil.getSessionFactory().openSession();
 
-			Criteria criteria = session.createCriteria(ProductInfo.class).addOrder(Order.asc("accountID"));
+			Criteria criteria = session.createCriteria(AccountInfo.class).addOrder(Order.asc("accountID"));
 
 			criteria.setCacheable(true);
 			@SuppressWarnings("unchecked")
